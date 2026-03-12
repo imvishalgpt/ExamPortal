@@ -1,0 +1,54 @@
+/* dashboard background */
+
+.dashboard-wrapper{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+
+  background: linear-gradient(135deg,#f5f7ff,#eef1ff);
+}
+
+
+/* floating shapes */
+
+.dashboard-wrapper::before,
+.dashboard-wrapper::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:40%;
+  background:rgba(63,81,181,0.08);
+  animation: float 12s infinite ease-in-out;
+}
+
+/* top shape */
+
+.dashboard-wrapper::before{
+  top:-150px;
+  left:-150px;
+}
+
+/* bottom shape */
+
+.dashboard-wrapper::after{
+  bottom:-150px;
+  right:-150px;
+}
+
+/* animation */
+
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(40px);}
+  100%{transform:translateY(0px);}
+}
+
+
+/* keep content above background */
+
+.sidebar,
+.content-area{
+  position:relative;
+  z-index:2;
+}

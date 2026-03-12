@@ -1,0 +1,185 @@
+<div class="add-question-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <p class="section-eyebrow">Quiz Management</p>
+      <h1 class="page-title">Add Question</h1>
+      <p class="page-sub">Adding to: <span class="quiz-name-highlight">{{ qTitle }}</span></p>
+    </div>
+    <button class="btn-back" [routerLink]="['/admin/view-questions', qId, qTitle]">
+      <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Questions
+    </button>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card">
+
+    <form (submit)="formSubmit()">
+
+      <!-- Question Content -->
+      <div class="form-section">
+        <div class="section-label">
+          <div class="section-num">1</div>
+          <span>Question Content</span>
+        </div>
+        <div class="editor-wrapper">
+          <ckeditor
+            [editor]="Editor"
+            [config]="config"
+            name="content"
+            [(ngModel)]="question.content">
+          </ckeditor>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Options -->
+      <div class="form-section">
+        <div class="section-label">
+          <div class="section-num">2</div>
+          <span>Answer Options</span>
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option-input-wrap">
+            <div class="option-badge a">A</div>
+            <input
+              class="option-input"
+              type="text"
+              placeholder="Enter option A"
+              required
+              [(ngModel)]="question.option1"
+              name="option1">
+          </div>
+
+          <div class="option-input-wrap">
+            <div class="option-badge b">B</div>
+            <input
+              class="option-input"
+              type="text"
+              placeholder="Enter option B"
+              required
+              [(ngModel)]="question.option2"
+              name="option2">
+          </div>
+
+          <div class="option-input-wrap">
+            <div class="option-badge c">C</div>
+            <input
+              class="option-input"
+              type="text"
+              placeholder="Enter option C"
+              [(ngModel)]="question.option3"
+              name="option3">
+          </div>
+
+          <div class="option-input-wrap">
+            <div class="option-badge d">D</div>
+            <input
+              class="option-input"
+              type="text"
+              placeholder="Enter option D"
+              [(ngModel)]="question.option4"
+              name="option4">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Correct Answer -->
+      <div class="form-section">
+        <div class="section-label">
+          <div class="section-num">3</div>
+          <span>Correct Answer</span>
+        </div>
+
+        <p class="answer-hint">Select the correct answer from the options you entered above.</p>
+
+        <div class="answer-options">
+
+          <label class="answer-option" [ngClass]="question.answer === question.option1 ? 'selected' : ''"
+            *ngIf="question.option1">
+            <input type="radio" [(ngModel)]="question.answer" name="answer" [value]="question.option1">
+            <div class="answer-badge a">A</div>
+            <span>{{ question.option1 }}</span>
+            <div class="answer-check" *ngIf="question.answer === question.option1">
+              <svg viewBox="0 0 24 24" fill="none" width="11" height="11">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </label>
+
+          <label class="answer-option" [ngClass]="question.answer === question.option2 ? 'selected' : ''"
+            *ngIf="question.option2">
+            <input type="radio" [(ngModel)]="question.answer" name="answer" [value]="question.option2">
+            <div class="answer-badge b">B</div>
+            <span>{{ question.option2 }}</span>
+            <div class="answer-check" *ngIf="question.answer === question.option2">
+              <svg viewBox="0 0 24 24" fill="none" width="11" height="11">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </label>
+
+          <label class="answer-option" [ngClass]="question.answer === question.option3 ? 'selected' : ''"
+            *ngIf="question.option3">
+            <input type="radio" [(ngModel)]="question.answer" name="answer" [value]="question.option3">
+            <div class="answer-badge c">C</div>
+            <span>{{ question.option3 }}</span>
+            <div class="answer-check" *ngIf="question.answer === question.option3">
+              <svg viewBox="0 0 24 24" fill="none" width="11" height="11">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </label>
+
+          <label class="answer-option" [ngClass]="question.answer === question.option4 ? 'selected' : ''"
+            *ngIf="question.option4">
+            <input type="radio" [(ngModel)]="question.answer" name="answer" [value]="question.option4">
+            <div class="answer-badge d">D</div>
+            <span>{{ question.option4 }}</span>
+            <div class="answer-check" *ngIf="question.answer === question.option4">
+              <svg viewBox="0 0 24 24" fill="none" width="11" height="11">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </label>
+
+        </div>
+
+        <p class="answer-empty" *ngIf="!question.option1 && !question.option2">
+          Fill in the options above to select the correct answer.
+        </p>
+
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Submit -->
+      <div class="form-actions">
+        <button type="submit" class="btn-add">
+          <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Add Question
+        </button>
+        <button type="button" class="btn-cancel" [routerLink]="['/admin/view-questions', qId, qTitle]">
+          Cancel
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

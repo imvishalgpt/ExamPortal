@@ -1,0 +1,225 @@
+/* ═══════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --white:       #ffffff;
+  --page-bg:     #f4f6fb;
+  --border:      #e2e6f0;
+  --blue:        #3d5af1;
+  --blue-dark:   #2a3fc7;
+  --blue-light:  #eef1fd;
+  --pink:        #e8245e;
+  --pink-light:  #fdeef3;
+  --text-dark:   #111827;
+  --text-body:   #4b5563;
+  --text-muted:  #9ca3af;
+  --radius:      16px;
+  --radius-sm:   10px;
+  --sidebar-w:   248px;
+}
+
+/* ── SIDEBAR SHELL ── */
+.sidebar {
+  width: var(--sidebar-w);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  box-shadow: 2px 0 16px rgba(61,90,241,0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  font-family: 'DM Sans', sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+/* ── HEADER ── */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--blue-light);
+  border: 1.5px solid rgba(61,90,241,0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.brand-icon svg { width: 16px; height: 16px; }
+
+.sidebar-header:hover .brand-icon {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 4px 12px rgba(61,90,241,0.3);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.brand-name em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.brand-sub {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── NAV ── */
+.sidebar-nav {
+  padding: 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+/* Group */
+.menu-group {
+  margin-bottom: 0.6rem;
+}
+
+.menu-label {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.6rem 0.6rem 0.4rem;
+  margin-bottom: 2px;
+}
+
+/* Nav item */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.nav-item:hover {
+  background: var(--blue-light);
+  color: var(--blue);
+  border-color: rgba(61,90,241,0.1);
+}
+
+.nav-item:hover .nav-icon {
+  background: var(--blue);
+  color: white;
+}
+
+/* Active state */
+.nav-item.active {
+  background: var(--blue-light);
+  color: var(--blue);
+  font-weight: 600;
+  border-color: rgba(61,90,241,0.12);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 3px;
+  background: var(--blue);
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-item.active .nav-icon {
+  background: var(--blue);
+  color: white;
+}
+
+/* Nav icon */
+.nav-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--page-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+/* ── SPACER + DIVIDER ── */
+.sidebar-spacer { flex: 1; min-height: 1rem; }
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 0.8rem 0.6rem;
+}
+
+/* ── LOGOUT ── */
+.logout-item {
+  margin: 0 0.8rem 1rem;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+}
+
+.logout-item .nav-icon {
+  background: var(--page-bg);
+  color: var(--text-muted);
+}
+
+.logout-item:hover {
+  background: var(--pink-light);
+  color: var(--pink);
+  border-color: rgba(232,36,94,0.12);
+}
+
+.logout-item:hover .nav-icon {
+  background: var(--pink);
+  color: white;
+}

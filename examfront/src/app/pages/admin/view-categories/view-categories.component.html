@@ -1,0 +1,80 @@
+<div class="categories-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <p class="section-eyebrow">Management</p>
+      <h1 class="page-title">All Categories</h1>
+    </div>
+    <button class="btn-primary" routerLink="/admin/add-category">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Add New Category
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!categories || categories.length === 0">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+    </div>
+    <h3>No categories yet</h3>
+    <p>Create your first category to get started</p>
+    <button class="btn-primary" routerLink="/admin/add-category">Add Category</button>
+  </div>
+
+  <!-- Categories Grid -->
+  <div class="categories-grid" *ngIf="categories && categories.length > 0">
+
+    <div
+      class="category-card"
+      *ngFor="let c of categories; let i = index"
+      [style.animation-delay]="i * 0.06 + 's'">
+
+      <!-- Card top accent uses cycling colors -->
+      <div class="card-accent" [ngClass]="'accent-' + (i % 4)"></div>
+
+      <div class="card-body">
+        <div class="card-icon" [ngClass]="'icon-' + (i % 4)">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">{{ c.title }}</h3>
+          <p class="card-desc">{{ c.description }}</p>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="card-index">#{{ i + 1 }}</span>
+        <div class="card-actions">
+          
+          <button class="icon-btn delete-btn" title="Delete" (click)="deleteCategory(c.cid)">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14">
+              <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

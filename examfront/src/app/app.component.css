@@ -1,0 +1,24 @@
+.text-center{
+    justify-content: center;
+}
+/* In your main app layout CSS (app.component.css or admin-layout.component.css) */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  position: fixed;   /* or relative/sticky */
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px; /* must match sidebar width */
+  min-width: 0;
+}

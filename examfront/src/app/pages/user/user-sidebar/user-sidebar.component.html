@@ -1,0 +1,61 @@
+<div class="user-sidebar">
+  
+
+  <!-- Nav -->
+  <nav class="sidebar-nav">
+
+    <div class="menu-group">
+      <span class="menu-label">Browse</span>
+
+      <!-- All Quizzes -->
+      <a class="nav-item" routerLink="/user-dashboard/0" routerLinkActive="active">
+        <div class="nav-icon icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <span>All Quizzes</span>
+      </a>
+    </div>
+
+    <!-- Categories -->
+    <div class="menu-group" *ngIf="categories && categories.length > 0">
+      <span class="menu-label">Categories</span>
+
+      <a
+        class="nav-item"
+        *ngFor="let c of categories; let i = index"
+        [routerLink]="'/user-dashboard/' + c.cid"
+        routerLinkActive="active">
+        <div class="nav-icon" [ngClass]="'icon-' + (i % 4)">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+          </svg>
+        </div>
+        <span>{{ c.title }}</span>
+      </a>
+
+    </div>
+
+  </nav>
+
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-divider"></div>
+
+  <!-- Profile link -->
+  <a class="nav-item profile-item" routerLink="/user/profile">
+    <div class="nav-icon icon-green">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span>My Profile</span>
+  </a>
+
+</div>

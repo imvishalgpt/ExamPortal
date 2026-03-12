@@ -1,0 +1,97 @@
+<div class="quizzes-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <p class="section-eyebrow">Student Dashboard</p>
+      <h1 class="page-title">Available Quizzes</h1>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!quizzes || quizzes.length === 0">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+      </svg>
+    </div>
+    <h3>No Quizzes Available</h3>
+    <p>There are no quizzes in this category. Explore other categories!</p>
+    <button class="btn-primary" routerLink="/user-dashboard/0">
+      Browse All Categories
+    </button>
+  </div>
+
+  <!-- Quizzes Grid -->
+  <div class="quizzes-grid" *ngIf="quizzes && quizzes.length > 0">
+
+    <div class="quiz-card"
+      *ngFor="let q of quizzes; let i = index"
+      [style.animation-delay]="i * 0.07 + 's'">
+
+      <!-- Top accent -->
+      <div class="card-accent" [ngClass]="'accent-' + (i % 4)"></div>
+
+      <!-- Card Header -->
+      <div class="card-header">
+        <div class="card-icon" [ngClass]="'icon-' + (i % 4)">
+          <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="card-title-group">
+          <h3 class="card-title">{{ q.title }}</h3>
+          <span class="card-category">{{ q.category.title }}</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p class="card-desc">{{ q.description }}</p>
+
+      <!-- Meta row -->
+      <div class="card-meta">
+        <div class="meta-item">
+          <div class="meta-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="12" height="12">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+            </svg>
+          </div>
+          <span>{{ q.numberOfQuestions }} Questions</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <div class="meta-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="12" height="12">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span>{{ q.maxMarks }} Marks</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="card-divider"></div>
+
+      <!-- Actions -->
+      <div class="card-actions">
+        <button class="action-btn btn-start"
+          [routerLink]="'/user-dashboard/instructions/' + q.qId">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+          </svg>
+          Start Quiz
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

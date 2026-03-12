@@ -1,0 +1,106 @@
+<div class="add-category-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <p class="section-eyebrow">Category Management</p>
+      <h1 class="page-title">Add New Category</h1>
+    </div>
+    <button class="btn-back" routerLink="/admin/categories">
+      <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Categories
+    </button>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card">
+
+    <div class="form-card-header">
+      <div class="fch-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="fch-title">Category Details</h2>
+        <p class="fch-sub">Fill in the details below to create a new exam category</p>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <form (ngSubmit)="formSubmit()">
+
+      <!-- Title -->
+      <div class="form-group">
+        <label class="form-label" for="title">
+          Category Title
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+              <path d="M4 6h16M4 12h16M4 18h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input
+            id="title"
+            class="form-input"
+            type="text"
+            name="title"
+            [(ngModel)]="category.title"
+            placeholder="e.g. Programming Languages"
+            required>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label class="form-label" for="description">
+          Description
+        </label>
+        <div class="textarea-wrapper">
+          <span class="textarea-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <textarea
+            id="description"
+            class="form-textarea"
+            name="description"
+            [(ngModel)]="category.description"
+            placeholder="Describe what this category covers..."
+            rows="5">
+          </textarea>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <button class="btn-submit" type="submit">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Add Category
+        </button>
+        <button class="btn-reset" type="reset">
+          Clear
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
