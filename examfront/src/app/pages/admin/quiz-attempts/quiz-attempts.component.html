@@ -1,0 +1,147 @@
+<div class="attempts-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <p class="section-eyebrow">Quiz Management</p>
+      <h1 class="page-title">Attempts</h1>
+      <p class="page-sub">{{ quizTitle }} — <strong>{{ attempts.length }}</strong> total attempts</p>
+    </div>
+    <button class="btn-back" routerLink="/admin/quizzes">
+      <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Quizzes
+    </button>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="summary-row" *ngIf="attempts.length > 0">
+    <div class="summary-card blue">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="sc-value">{{ attempts.length }}</p>
+        <p class="sc-label">Total Attempts</p>
+      </div>
+    </div>
+
+    <div class="summary-card green">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="sc-value">{{ getAvgMarks() | number:'1.1-1' }}</p>
+        <p class="sc-label">Avg Marks</p>
+      </div>
+    </div>
+
+    <div class="summary-card purple">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="sc-value">{{ getTopScore() | number:'1.1-1' }}</p>
+        <p class="sc-label">Top Score</p>
+      </div>
+    </div>
+
+    <div class="summary-card pink">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+          <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="sc-value">{{ getUniqueStudents() }}</p>
+        <p class="sc-label">Unique Students</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading attempts...</p>
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" *ngIf="!isLoading && attempts.length === 0">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h3>No Attempts Yet</h3>
+    <p>No students have attempted this quiz yet.</p>
+  </div>
+
+  <!-- Attempts table -->
+  <div class="table-card" *ngIf="!isLoading && attempts.length > 0">
+    <div class="table-scroll">
+      <table class="attempts-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Student</th>
+            <th>Username</th>
+            <th>Marks Got</th>
+            <th>Correct</th>
+            <th>Attempted</th>
+            <th>Total Q</th>
+            <th>Score %</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of attempts; let i = index"
+            [style.animation-delay]="i * 0.04 + 's'">
+            <td class="td-num">{{ i + 1 }}</td>
+            <td class="td-student">
+              <div class="avatar" [ngStyle]="{'background': getAvatarColor(i)}">
+                {{ (a.user?.firstname?.charAt(0) || a.user?.username?.charAt(0)) | uppercase }}
+              </div>
+              <div>
+                <p class="student-name">{{ a.user?.firstname }} {{ a.user?.lastname }}</p>
+              </div>
+            </td>
+            <td class="td-username">{{ a.user?.username }}</td>
+            <td class="td-marks">
+              <span class="marks-badge">{{ a.marksGot | number:'1.1-1' }}</span>
+            </td>
+            <td class="td-correct">
+              <span class="correct-badge">{{ a.correctAnswers }} ✓</span>
+            </td>
+            <td>{{ a.attempted }} / {{ a.totalQuestions }}</td>
+            <td>{{ a.totalQuestions }}</td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar">
+                  <div class="score-fill"
+                    [style.width]="getScorePercent(a) + '%'"
+                    [ngClass]="getScorePercent(a) >= 70 ? 'fill-green' : getScorePercent(a) >= 40 ? 'fill-orange' : 'fill-red'">
+                  </div>
+                </div>
+                <span class="score-pct">{{ getScorePercent(a) | number:'1.0-0' }}%</span>
+              </div>
+            </td>
+            <td class="td-date">{{ a.attemptedOn | date:'dd MMM, HH:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

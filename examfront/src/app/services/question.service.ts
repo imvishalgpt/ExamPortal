@@ -41,8 +41,22 @@ public getQuestion(quesId:any){
 }
 
 //eval-quiz
-public evalQuiz(questions:any){
-  return this._http.post(`${baseUrl}/question/eval-quiz`,questions)
-
+evalQuiz(questions: any[], username: string = '') {
+  return this._http.post(
+    `${baseUrl}/question/eval-quiz?username=${username}`,
+    questions,
+  
+  );
 }
+
+// Get all attempts for a quiz
+getAttempts(qid: any) {
+  return this._http.get(
+    `${baseUrl}/question/attempts/${qid}`,
+    
+  );
+}
+
+
+
 }

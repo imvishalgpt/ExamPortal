@@ -20,6 +20,7 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
 import { AdminStudentsComponent } from './pages/admin/admin-students/admin-students.component';
+import { QuizAttemptsComponent } from './pages/admin/quiz-attempts/quiz-attempts.component';
 
 
 export const routes: Routes = [
@@ -83,7 +84,8 @@ export const routes: Routes = [
   path:'update-question/:quesId',
   component:UpdateQuestionComponent
 },
-{ path: 'students', component: AdminStudentsComponent }
+{ path: 'students', component: AdminStudentsComponent },
+{ path: 'attempts/:qid/:title', component: QuizAttemptsComponent }
   ]
 },
     {
