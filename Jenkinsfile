@@ -1,13 +1,11 @@
 pipeline {
     agent any
 
-    stages {
-
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/imvishalgpt/examportal.git'
-            }
-        }
+    stage('Clone Repository') {
+    steps {
+        git branch: 'main', url: 'https://github.com/imvishalgpt/examportal.git'
+    }
+}
 
         stage('Build Backend') {
             steps {
