@@ -11,7 +11,7 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                dir('backend') {
+                dir('examserver') {
                     sh 'mvn clean package -DskipTests'
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
+                dir('examfront') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                 pkill -f examportal || true
-                nohup java -jar backend/target/*.jar > app.log 2>&1 &
+                nohup java -jar examserver/target/*.jar > app.log 2>&1 &
                 '''
             }
         }
