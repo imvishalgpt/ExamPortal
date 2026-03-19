@@ -28,6 +28,12 @@ public class UserController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    @GetMapping("/test")
+    public String test()
+    {
+        return "Welcome to backend api of ExamPortal";
+    }
+
     // create user
     @PostMapping("/")
     public User createUser(@RequestBody User user) throws Exception {

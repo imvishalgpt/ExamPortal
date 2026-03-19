@@ -31,29 +31,34 @@ public class ExamserverApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("starting code");
-//
-//		User user= new User();
-//
-//		user.setFirstname("Vishal");
-//		user.setLastname("Gupta");
-//		user.setUsername("vishal23");
-//		user.setPassword(this.bCryptPasswordEncoder.encode("abcd"));
-//		user.setEmail("vishal23@gmail.com");
-//		user.setProfile("default.png");
-//
-//		Role role1= new Role();
-//		role1.setRoleId(23L);
-//		role1.setRoleName("ADMIN");
-//
-//		Set<UserRole> userRoleSet= new HashSet<>();
-//		UserRole userRole= new UserRole();
-//		userRole.setRole(role1);
-//		userRole.setUser(user);
-//
-//
-//		userRoleSet.add(userRole);
-//
-//		User user1= this.userService.createUser(user, userRoleSet);
-//		System.out.println(user1.getUsername());
+
+			// Only create user if not already exists
+			if (this.userService.getUser("vishal23") == null) {
+
+				User user = new User();
+				user.setFirstname("Vishal");
+				user.setLastname("Gupta");
+				user.setUsername("vishal23");
+				user.setPassword(this.bCryptPasswordEncoder.encode("abcd"));
+				user.setEmail("vishal23@gmail.com");
+				user.setProfile("default.png");
+
+				Role role1 = new Role();
+				role1.setRoleId(23L);
+				role1.setRoleName("ADMIN");
+
+				Set<UserRole> userRoleSet = new HashSet<>();
+				UserRole userRole = new UserRole();
+				userRole.setRole(role1);
+				userRole.setUser(user);
+				userRoleSet.add(userRole);
+
+				User user1 = this.userService.createUser(user, userRoleSet);
+				System.out.println(user1.getUsername());
+
+			} else {
+				System.out.println("Admin user already exists, skipping creation.");
+			}
+		}
 	}
-}
+
