@@ -48,10 +48,10 @@ public class MySecurityConfig {
     @Bean
     public CorsConfigurationSource myCorsConfigurationSource() {  // ← renamed
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(
-                "http://3.25.244.220",
-                "http://localhost:4200"
-        ));
+//        config.setAllowedOrigins(List.of(
+//                "http://3.25.244.220",
+//                "http://localhost:4200"
+//        ));
         config.setAllowedOriginPatterns(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedOriginPatterns(List.of("*"));
