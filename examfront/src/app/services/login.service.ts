@@ -16,7 +16,7 @@ export class LoginService {
   getCurrentUser() {
   const token = localStorage.getItem('token');
 
-  return this.http.get('http://localhost:8080/current-user', {
+  return this.http.get(`${baseUrl}/current-user`, {
     headers: {
       Authorization: `Bearer ${token}`
     }

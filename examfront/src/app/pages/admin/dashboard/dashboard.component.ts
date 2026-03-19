@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../shared/material.module';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [...MaterialModule, SidebarComponent],
+  imports: [CommonModule, RouterOutlet, SidebarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
+  encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent {
-
-}
+export class DashboardComponent {}

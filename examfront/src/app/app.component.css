@@ -22,3 +22,11 @@
   margin-left: 250px; /* must match sidebar width */
   min-width: 0;
 }
+@media (max-width: 768px) {
+  .app-layout {
+    margin-left: 0 !important;
+  }
+  .navbar {
+    left: 0 !important;
+  }
+}

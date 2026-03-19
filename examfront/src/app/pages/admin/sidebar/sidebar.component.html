@@ -1,19 +1,30 @@
-<div class="sidebar">
+<!-- Overlay only - hamburger is now in navbar -->
+<div class="sidebar-overlay" [class.open]="isOpen" (click)="closeSidebar()"></div>
+
+<div class="sidebar" [class.open]="isOpen">
 
   <!-- Brand Header -->
   <div class="sidebar-header">
-    
-   
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">Exam<em>Portal</em></span>
+      <span class="brand-sub">Academic Suite</span>
+    </div>
+    <button class="close-btn" (click)="closeSidebar()">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 
-  <!-- Nav -->
   <nav class="sidebar-nav">
-
-    <!-- Dashboard -->
     <div class="menu-group">
       <span class="menu-label">Dashboard</span>
-
-      <a class="nav-item" routerLink="/admin/" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,8 +33,7 @@
         </div>
         <span>Home</span>
       </a>
-
-      <a class="nav-item" routerLink="/admin/profile" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/profile" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
@@ -34,11 +44,9 @@
       </a>
     </div>
 
-    <!-- Category Management -->
     <div class="menu-group">
       <span class="menu-label">Category Management</span>
-
-      <a class="nav-item" routerLink="/admin/categories" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/categories" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
@@ -49,8 +57,7 @@
         </div>
         <span>Categories</span>
       </a>
-
-      <a class="nav-item" routerLink="/admin/add-category" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/add-category" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
@@ -62,11 +69,9 @@
       </a>
     </div>
 
-    <!-- Quiz Management -->
     <div class="menu-group">
       <span class="menu-label">Quiz Management</span>
-
-      <a class="nav-item" routerLink="/admin/quizzes" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/quizzes" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
@@ -76,8 +81,7 @@
         </div>
         <span>Quizzes</span>
       </a>
-
-      <a class="nav-item" routerLink="/admin/add-quiz" routerLinkActive="active">
+      <a class="nav-item" routerLink="/admin/add-quiz" routerLinkActive="active" (click)="closeSidebar()">
         <div class="nav-icon">
           <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
@@ -89,15 +93,33 @@
       </a>
     </div>
 
+    <div class="menu-group">
+      <span class="menu-label">Students</span>
+      <a class="nav-item" routerLink="/admin/students" routerLinkActive="active" (click)="closeSidebar()">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Students</span>
+      </a>
+    </div>
   </nav>
 
-  <!-- Spacer -->
   <div class="sidebar-spacer"></div>
-
-  <!-- Divider -->
   <div class="sidebar-divider"></div>
 
-  <!-- Logout -->
-  
+  <a class="nav-item logout-item" routerLink="/login" (click)="closeSidebar()">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="17" height="17">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span>Logout</span>
+  </a>
 
 </div>

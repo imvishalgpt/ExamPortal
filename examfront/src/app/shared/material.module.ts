@@ -16,7 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RouterOutlet } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+
 
 
 

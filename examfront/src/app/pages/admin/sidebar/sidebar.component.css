@@ -223,3 +223,73 @@
   background: var(--pink);
   color: white;
 }
+/* ── ADD THIS TO THE BOTTOM OF sidebar.component.css ── */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1100;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #3d5af1;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(61,90,241,0.3);
+}
+
+.close-btn {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 4px;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 250;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .close-btn {
+    display: flex;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 300;
+    top: 0 !important;
+    height: 100vh !important;
+    background: #ffffff;
+    width: 260px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 30px rgba(0,0,0,0.2);
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+  }
+
+  /* Hide sidebar toggle button when sidebar is open */
+  .hamburger.hidden {
+    display: none;
+  }
+}

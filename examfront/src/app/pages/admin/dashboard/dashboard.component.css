@@ -1,0 +1,13 @@
+.admin-layout {
+  margin-left: 248px;
+  padding-top: 66px;
+  min-height: 100vh;
+  background: #f4f6fb;
+}
+
+@media (max-width: 768px) {
+  .admin-layout {
+    margin-left: 0 !important;
+    padding-top: 0;
+  }
+}

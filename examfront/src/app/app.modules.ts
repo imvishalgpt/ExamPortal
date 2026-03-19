@@ -10,21 +10,26 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { authInterceptorProviders } from './services/auth.interceptor';
 import { CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { RouterModule, Routes } from '@angular/router';
+import { routes } from './app.routes';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent,FooterComponent,SignupComponent,LoginComponent, MatSnackBarModule, 
+    AppComponent, NavbarComponent,FooterComponent,SignupComponent,LoginComponent, 
     // Add other components here
   ]
   ,
   imports: [
-    BrowserModule, HttpClientModule, CKEditorModule, NgxUiLoaderModule, NgxUiLoaderHttpModule.forRoot({showForeground: true,})
+    BrowserModule, HttpClientModule, CKEditorModule, NgxUiLoaderModule, NgxUiLoaderHttpModule.forRoot({showForeground: true,}),RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top'
+    })
     // Add other modules here
   ],
   providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

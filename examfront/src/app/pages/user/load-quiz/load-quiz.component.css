@@ -289,6 +289,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {
-  .quizzes-wrapper { padding: 1.2rem 1rem 3rem; }
+  .quizzes-wrapper {
+    padding: 1.2rem 1rem 3rem;
+    margin-left: 0 !important;
+  }
   .quizzes-grid { grid-template-columns: 1fr; }
 }
